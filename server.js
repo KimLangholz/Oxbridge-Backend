@@ -13,7 +13,7 @@ app.use(cors());
 const db = require("./app/models");
 
 // use JWT auth to secure the api
-//app.use(jwt());
+app.use(jwt());
 
 // api routes
 app.get('/', (req, res) => {

@@ -2,9 +2,10 @@
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
-var port = 8080;
+//var port = 8080;
 require('dotenv').config();
 
+/*
 // Environment specific settings
 if (process.env.NODE_ENV === 'production') {
     port = process.env.PORT;
@@ -15,6 +16,7 @@ if (process.env.NODE_ENV === 'production') {
     };
     app.use(cors(corsOptions));
 }
+*/
 
 //Middlewares
 app.use(bodyParser.json());
@@ -46,6 +48,8 @@ require("./app/routes/race.routes")(app);
 require("./app/routes/team.routes")(app);
 require("./app/routes/race_result.routes")(app);
 
-app.listen(port, () => {
-    console.log('Server is running on port:' + port);
+// start server
+const port = process.env.NODE_ENV === 'production' ? (process.env.PORT || 80) : 8080;
+const server = app.listen(port, function () {
+    console.log('Server listening on port ' + port);
 });

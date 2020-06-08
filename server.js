@@ -7,11 +7,11 @@ require('dotenv').config();
 
 // Environment specific settings
 if (process.env.NODE_ENV === 'production') {
-    port = process.env.PORT || 80;
+    port = process.env.PORT;
     app.use(cors());
 } else {
     var corsOptions = {
-        origin: "http://localhost:8080"
+        origin: "http://localhost:8081"
     };
     app.use(cors(corsOptions));
 }

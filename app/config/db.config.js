@@ -3,7 +3,7 @@
 
 if (process.env.NODE_ENV === 'production') {
     module.exports = {
-        url: process.env.PORT || 80
+        url: process.env.DB_CONNECTION
     };
 }
 else {

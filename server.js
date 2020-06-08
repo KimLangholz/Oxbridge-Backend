@@ -10,11 +10,21 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
 
+const db = require("./app/models");
+
 // use JWT auth to secure the api
-app.use(jwt());
+//app.use(jwt());
 
 // api routes
-app.use('/users', require('./users/users.controller'));
+app.get('/', (req, res) => {
+    res.send('Oxbridge API');
+})
+require("./app/routes/race_log.routes")(app);
+require("./app/routes/admin.routes")(app);
+require("./app/routes/user.routes")(app);
+require("./app/routes/race.routes")(app);
+require("./app/routes/team.routes")(app);
+require("./app/routes/race_result.routes")(app);
 
 // global error handler
 app.use(errorHandler);

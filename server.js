@@ -1,8 +1,10 @@
-﻿const express = require('express');
+﻿require('rootpath')();
+const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
-//var port = 8080;
+const jwt = require('_helpers/jwt');
+const errorHandler = require('_helpers/error-handler');
 require('dotenv').config();
 
 /*
@@ -21,8 +23,15 @@ if (process.env.NODE_ENV === 'production') {
 //Middlewares
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
 
 const db = require("./app/models");
+
+// use JWT auth to secure the api
+app.use(jwt());
+
+// global error handler
+app.use(errorHandler);
 
 db.mongoose
     .connect(db.url, {

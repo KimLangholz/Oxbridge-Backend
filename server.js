@@ -21,7 +21,7 @@ const server = app.listen(port, function () {
 
 
 //Connect to DB
-const db = require("./app/models");
+//const db = require("./app/models");
 /*
 db.mongoose
     .connect(db.url, {

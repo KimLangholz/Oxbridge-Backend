@@ -1,9 +1,11 @@
 ﻿const express = require('express');
+const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const app = express();
-//var port = 8080;
 require('dotenv').config();
+
+//var port = 8080;
+
 /*
 // Environment specific settings
 if (process.env.NODE_ENV === 'production') {
@@ -22,7 +24,7 @@ const server = app.listen(port, function () {
 });
 
 app.get('/', (req, res) => {
-    res.send('We are on home');
+    res.send('Oxbridge Api');
 })
 
 /*

@@ -22,7 +22,7 @@ const server = app.listen(port, function () {
 
 //Connect to DB
 const db = require("./app/models");
-
+/*
 db.mongoose
     .connect(db.url, {
         useNewUrlParser: true,
@@ -35,9 +35,8 @@ db.mongoose
         console.log("Cannot connect to database!", err);
         process.exit();
     });
+    */
 
-
-/*
 if (process.env.NODE_ENV === 'production') {
     mongoose.connect('mongodb://oxbridge:Oxbridge6400@ds147030.mlab.com:47030/heroku_34px2w6n', () => 
     console.log('Connected to cloud dB!')
@@ -46,7 +45,7 @@ else {
     mongoose.connect('mongodb://oxbridge:Oxbridge6400@ds147030.mlab.com:47030/heroku_34px2w6n', () => 
     console.log('Connected to local dB!')
     )};
-*/
+
 
 
 app.get('/', (req, res) => {

@@ -8,7 +8,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 else {
     module.exports = {
-        url: "mongodb://localhost:27017/Oxbridge"
+        url: process.env.DB_CONNECTION_DEV
         
     };
 }

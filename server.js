@@ -18,12 +18,13 @@ const port = process.env.NODE_ENV === 'production' ? (process.env.PORT || 80) : 
 const server = app.listen(port, function () {
     console.log('Server listening on port ' + port);
 });
-/*
+
+//Print something on home screen
 app.get('/', (req, res) => {
     res.send('We are on home');
-})*/
+})
 
-
+//Connect to DB
 if (process.env.NODE_ENV === 'production') {
     mongoose.connect('mongodb://oxbridge:Oxbridge6400@ds147030.mlab.com:47030/heroku_34px2w6n', () => 
     console.log('Connected to cloud dB!')
@@ -33,7 +34,7 @@ else {
     console.log('Connected to local dB!')
     )};
 
-    
+/*    
 app.get('/', (req, res) => {
         res.send('Oxbridge API');
     })
@@ -45,7 +46,7 @@ app.get('/', (req, res) => {
     require("./app/routes/race_result.routes")(app);
     
 
-
+*/
 /*
 //Middlewares
 app.use(bodyParser.json());

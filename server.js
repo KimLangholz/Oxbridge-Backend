@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 require('dotenv').config();
+const mongoose = require("mongoose");
 
 //var port = 8080;
 
@@ -18,6 +19,7 @@ if (process.env.NODE_ENV === 'production') {
     app.use(cors(corsOptions));
 }*/
 
+//Connect server - local & cloud
 const port = process.env.NODE_ENV === 'production' ? (process.env.PORT || 80) : 8080;
 const server = app.listen(port, function () {
     console.log('Server listening on port ' + port);
@@ -26,6 +28,18 @@ const server = app.listen(port, function () {
 app.get('/', (req, res) => {
     res.send('Oxbridge Api');
 })
+
+
+
+if (process.env.NODE_ENV === 'production') {
+    mongoose.connect('mongodb://oxbridge:Oxbridge6400@ds147030.mlab.com:47030/heroku_34px2w6n', () => 
+    console.log('Connected to cloud dB!')
+    )}
+else {
+    mongoose.connect('mongodb://oxbridge:Oxbridge6400@ds147030.mlab.com:47030/heroku_34px2w6n', () => 
+    console.log('Connected to local dB!')
+    )};
+
 
 /*
 //Middlewares

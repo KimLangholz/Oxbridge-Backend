@@ -50,7 +50,8 @@ else {
     console.log('Connected to local dB!')
     )};
 */
-    
+
+/*
 app.get('/', (req, res) => {
         res.send('Oxbridge API');
     })
@@ -60,7 +61,7 @@ app.get('/', (req, res) => {
     require("./app/routes/race.routes")(app);
     require("./app/routes/team.routes")(app);
     require("./app/routes/race_result.routes")(app);
-    
+   */ 
 /*
 //Middlewares
 app.use(bodyParser.json());

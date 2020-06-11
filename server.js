@@ -19,10 +19,6 @@ const server = app.listen(port, function () {
     console.log('Server listening on port ' + port);
 });
 
-/*//Print something on home screen
-app.get('/', (req, res) => {
-    res.send('We are on home');
-})*/
 
 //Connect to DB
 const db = require("./app/models");
@@ -40,6 +36,7 @@ db.mongoose
         process.exit();
     });
 
+
 /*
 if (process.env.NODE_ENV === 'production') {
     mongoose.connect('mongodb://oxbridge:Oxbridge6400@ds147030.mlab.com:47030/heroku_34px2w6n', () => 
@@ -51,10 +48,11 @@ else {
     )};
 */
 
-/*
+
 app.get('/', (req, res) => {
         res.send('Oxbridge API');
     })
+/*
     require("./app/routes/race_log.routes")(app);
     require("./app/routes/admin.routes")(app);
     require("./app/routes/user.routes")(app);

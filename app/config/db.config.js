@@ -8,8 +8,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 else {
     module.exports = {
-        url: process.env.DB_CONNECTION_DEV
-        
+        url: process.env.DB_CONNECTION_DEV    
     };
 }
 

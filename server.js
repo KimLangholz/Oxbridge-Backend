@@ -11,7 +11,7 @@ const mongoose = require("mongoose");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const db = require("./app/models");
+//const db = require("./app/models");
 
 //Connect server - local & cloud
 const port = process.env.NODE_ENV === 'production' ? (process.env.PORT || 80) : 8080;

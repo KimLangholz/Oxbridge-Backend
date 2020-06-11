@@ -8,6 +8,12 @@ require('dotenv').config();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+//Import routes
+const user = require('./app/routes/userRoute');
+
+//Middelware
+app.use('/api/user', user);
+
 //Connect server - local & cloud
 const port = process.env.NODE_ENV === 'production' ? (process.env.PORT || 80) : 8080;
 const server = app.listen(port, function () {

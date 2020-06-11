@@ -9,10 +9,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //Import routes
-const user = require('./app/routes/userRoute');
-
-//Middelware
-app.use('/api/user', user);
+const postsRoute = require('./app/routes/posts');
+app.use('/api/user', postsRoute);
 
 //Connect server - local & cloud
 const port = process.env.NODE_ENV === 'production' ? (process.env.PORT || 80) : 8080;
@@ -32,6 +30,6 @@ else {
 
 //Print something on home screen
 app.get('/', (req, res) => {
-    res.send('Oxbridge Project API');
+    res.send('Oxbridge Project - API');
 })
 

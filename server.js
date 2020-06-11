@@ -2,7 +2,7 @@
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
-var port = 8080;
+//var port = 8080;
 require('dotenv').config();
 /*
 // Environment specific settings
@@ -15,7 +15,11 @@ if (process.env.NODE_ENV === 'production') {
     };
     app.use(cors(corsOptions));
 }*/
-app.listen(port);
+
+const port = process.env.NODE_ENV === 'production' ? (process.env.PORT || 80) : 8080;
+const server = app.listen(port, function () {
+    console.log('Server listening on port ' + port);
+});
 
 app.get('/', (req, res) => {
     res.send('We are on home');

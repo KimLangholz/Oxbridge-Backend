@@ -5,12 +5,16 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 require('dotenv').config();
 
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //Import routes
 const postsRoute = require('./app/routes/posts');
 app.use('/api/user', postsRoute);
+
+const UsersRoute = require('./app/routes/users');
+app.use('/api/users', UsersRoute);
 
 //Connect server - local & cloud
 const port = process.env.NODE_ENV === 'production' ? (process.env.PORT || 80) : 8080;
@@ -27,6 +31,8 @@ else {
     mongoose.connect('mongodb://oxbridge:Oxbridge6400@ds147030.mlab.com:47030/heroku_34px2w6n', () => 
     console.log('Connected to local dB!')
 )};
+
+//onst db = require("./app/models");
 
 //Print something on home screen
 app.get('/', (req, res) => {

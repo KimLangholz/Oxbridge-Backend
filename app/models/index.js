@@ -8,11 +8,11 @@ const db = {};
 
 db.mongoose = mongoose;
 // db.url = dbConfig.url;
-// db.raceLogs = require("./race_log.model.js")(mongoose);
-// db.admins = require("./admin.model.js")(mongoose);
-// db.users = require("./user.model.js")(mongoose);
-// db.races = require("./race.model.js")(mongoose);
+db.raceLogs = require("./raceLogModel.js")(mongoose);
+db.admins = require("./adminModel.js")(mongoose);
+db.users = require("./userModel.js")(mongoose);
+db.races = require("./raceModel.js")(mongoose);
 db.teams = require("./teamModel.js")(mongoose);
-// db.results = require("./race_result.model.js")(mongoose);
+db.results = require("./raceResultModel.js")(mongoose);
 
 module.exports = db;

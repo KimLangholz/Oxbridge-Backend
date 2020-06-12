@@ -1,36 +1,25 @@
 /**
- * This is the Admin model. 
+ * This is the Admin model.
  * It requires a unique email, a password and a optional name.
  */
-
-const mongoose = require('mongoose');
+module.exports = mongoose => {
 
     bcrypt = require('bcrypt');
     SALT_WORK_FACTOR = 10;
 
-const adminSchema = mongoose.Schema({
-        email: { 
-            type: String,
-            required: true, 
-            trim: true, 
-            unique: true 
+    // Creating a Admin schema.
+    var adminSchema = mongoose.Schema(
+        {
+            email: { type: String, required: true, trim: true, unique: true },
+            password: { type: String, required: true },
+            name: String,
         },
-        
-        password: { 
-            type: String, 
-            required: true 
-        },
-        
-        name: {
-            type :String
-        },
-    },
-    {
-        timestamps: false,
-        versionKey: false
-    });
+        {
+            timestamps: false,
+            versionKey: false
+        });
 
-adminSchema.pre('save', function (next) {
+    adminSchema.pre('save', function (next) {
         var admin = this;
 
         // only hash the password if it has been modified (or is new)
@@ -51,4 +40,5 @@ adminSchema.pre('save', function (next) {
         });
     });
 
-module.exports = mongoose.model('Admin', adminSchema);
+    return mongoose.model("admin", adminSchema);
+}

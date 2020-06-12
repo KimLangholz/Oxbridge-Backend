@@ -13,8 +13,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //const postsRoute = require('./app/routes/posts');
 //app.use('/api/post', postsRoute);
 
-const usersRoute = require('./app/routes/users');
-app.use('/api/user', usersRoute);
+//const usersRoute = require('./app/routes/users');
+//app.use('/api/user', usersRoute);
 
 //const adminR = require('./app/routes/adminRoute');
 //app.use('/api/admin', adminR);
@@ -43,9 +43,9 @@ app.get('/', (req, res) => {
     res.send('Oxbridge Project - API');
 })
 
-// require("./app/routes/race_log.routes")(app);
-// require("./app/routes/admin.routes")(app);
-// require("./app/routes/user.routes")(app);
-// require("./app/routes/race.routes")(app);
+require("./app/routes/raceLogRoutes")(app);
+require("./app/routes/adminRoutes")(app);
+require("./app/routes/userRoutes")(app);
 require("./app/routes/teamRoutes")(app);
-// require("./app/routes/race_result.routes")(app);
+require("./app/routes//raceRoutes")(app);
+require("./app/routes/raceResultRoutes")(app);

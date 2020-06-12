@@ -10,11 +10,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //Import routes
-const postsRoute = require('./app/routes/posts');
-app.use('/api/user', postsRoute);
+//const postsRoute = require('./app/routes/posts');
+//app.use('/api/post', postsRoute);
 
-const UsersRoute = require('./app/routes/users');
-app.use('/api/users', UsersRoute);
+const usersRoute = require('./app/routes/users');
+app.use('/api/user', usersRoute);
 
 //Connect server - local & cloud
 const port = process.env.NODE_ENV === 'production' ? (process.env.PORT || 80) : 8080;
@@ -28,7 +28,7 @@ if (process.env.NODE_ENV === 'production') {
     console.log('Connected to cloud dB!')
     )}
 else {
-    mongoose.connect('mongodb://oxbridge:Oxbridge6400@ds147030.mlab.com:47030/heroku_34px2w6n', () => 
+    mongoose.connect('mongodb://localhost:27017/Oxbridge', () => 
     console.log('Connected to local dB!')
 )};
 

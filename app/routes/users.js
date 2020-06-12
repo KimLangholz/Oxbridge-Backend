@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/User');
+const userModel = require('../models/User');
 
 /*// Validate request
 if (!req.body.email || !req.body.password || !req.body.firstName || !req.body.lastName) {
@@ -11,7 +11,7 @@ if (!req.body.email || !req.body.password || !req.body.firstName || !req.body.la
 //Get all the users
 router.get('/', async (req, res) => {
     try{
-        const users = await Post.find();
+        const users = await userModel.find();
         res.json(users);
     }catch (err){
         res.json({message : err});
@@ -20,19 +20,42 @@ router.get('/', async (req, res) => {
 
 // Create new User
 router.post('/', async (req, res) => {
-    const newUser = new User({
+    const user = new userModel({
         email: req.body.email,
         password: req.body.password,
         firstName: req.body.firstName,
         lastName: req.body.lastName
     });
     try {
-        const savedUser = await post.save();
+        const savedUser = await user.save();
         res.json(savedUser);  
     }catch(err){
         res.json({message : err});
     }
     
+});
+
+//Get one user
+router.get('/:userId', async (req, res) => {
+    try{
+        const oneUser = await userModel.findById(req.params.userId);
+        res.json(oneUser);
+    }catch (err){
+        res.json({message : err});
+    }
+});
+
+//Update one user
+router.patch('/:userId', async (req, res) => {
+    try{
+        const updatedUser = await userModel.updateOne(
+            { _id: req.params.userId}, 
+            { $set: { email: req.body.email}}
+            );
+        res.json(updatedUser);
+    }catch (err){
+        res.json({message : err});
+    }
 });
 
 module.exports = router;

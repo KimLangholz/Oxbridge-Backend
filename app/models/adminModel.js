@@ -4,7 +4,7 @@
  */
 module.exports = mongoose => {
 
-    bcrypt = require('bcrypt');
+    bcrypt = require('bcrypt-nodejs');
     SALT_WORK_FACTOR = 10;
 
     // Creating a Admin schema.
@@ -30,7 +30,7 @@ module.exports = mongoose => {
             if (err) return next(err);
 
             // hash the password using our new salt
-            bcrypt.hash(admin.password, salt, function (err, hash) {
+            bcrypt.hash(admin.password, salt, function (err, hashedPassword) {
                 if (err) return next(err);
 
                 // override the neutral password with the hashed one

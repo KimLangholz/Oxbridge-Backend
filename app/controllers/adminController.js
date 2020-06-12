@@ -1,6 +1,6 @@
 const db = require("../models");
 const adminModel = db.admins;
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt-nodejs');
 
 /**
  * Create and Save a new Admin.

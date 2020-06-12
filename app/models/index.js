@@ -11,7 +11,7 @@ db.mongoose = mongoose;
 //db.raceLogs = require("./raceLogModel.js")(mongoose);
 //db.admins = require("./adminModel.js")(mongoose);
 //db.users = require("./userModel.js")(mongoose);
-db.races = require("./raceModel.js")(mongoose);
+//db.races = require("./raceModel.js")(mongoose);
 db.teams = require("./teamModel.js")(mongoose);
 //db.results = require("./raceResultModel.js")(mongoose);
 

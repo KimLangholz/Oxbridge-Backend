@@ -16,6 +16,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const usersRoute = require('./app/routes/users');
 app.use('/api/user', usersRoute);
 
+const adminR = require('./app/routes/adminRoute');
+app.use('/api/admin', adminR);
+
 //Connect server - local & cloud
 const port = process.env.NODE_ENV === 'production' ? (process.env.PORT || 80) : 8080;
 const server = app.listen(port, function () {

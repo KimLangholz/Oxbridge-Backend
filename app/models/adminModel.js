@@ -12,7 +12,7 @@ module.exports = mongoose => {
         {
             email: { type: String, required: true, trim: true, unique: true },
             password: { type: String, required: true },
-            name: String,
+            name: String
         },
         {
             timestamps: false,

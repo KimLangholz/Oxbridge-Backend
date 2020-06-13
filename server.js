@@ -13,14 +13,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const db = require("./app/models");
 
-//Connect server - local & cloud
+//Connect server - local or cloud
 const port = process.env.NODE_ENV === 'production' ? (process.env.PORT || 80) : 8080;
 const server = app.listen(port, function () {
     console.log('Server listening on port ' + port);
 });
 
 
-//Connect to DB local & cloud
+//Connect to DB local or cloud
 db.mongoose
     .connect(db.url, {
         useNewUrlParser: true,
@@ -39,7 +39,7 @@ db.mongoose
 app.get('/', (req, res) => {
     res.send('Oxbridge Project - API');
 })
-
+/*
 app.post('/api/posts', verifyToken, (req, res) => {
     jwt.verify(req.token, 'secretkey', (err, authData) => {
         if(err){
@@ -54,8 +54,10 @@ app.post('/api/posts', verifyToken, (req, res) => {
     
 });
 
+*/
 
-app.post('/api/login', (req, res) => {
+// get token on login
+app.get('/api/login', (req, res) => {
     
     // Mock user
     const user = {
@@ -71,6 +73,7 @@ app.post('/api/login', (req, res) => {
     });
 });
 
+/*
 // Format of token
 // Authorization: Bearer <access_token>
 
@@ -93,9 +96,7 @@ function verifyToken(req, res, next) {
         res.sendStatus(403);
     }
 } 
-
-//app.listen(5000, () => console.log('Server started on port 5000'));
-
+*/
 require("./app/routes/raceLogRoutes")(app);
 require("./app/routes/adminRoutes")(app);
 require("./app/routes/userRoutes")(app);

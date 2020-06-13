@@ -45,7 +45,7 @@ app.get('/', (req, res) => {
 
 require("./app/routes/raceLogRoutes")(app);
 require("./app/routes/adminRoutes")(app);
-// require("./app/routes/userRoutes")(app);
+require("./app/routes/userRoutes")(app);
 require("./app/routes/teamRoutes")(app);
 require("./app/routes//raceRoutes")(app);
 require("./app/routes/raceResultRoutes")(app);

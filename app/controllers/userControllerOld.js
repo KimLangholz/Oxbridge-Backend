@@ -1,6 +1,6 @@
 //const db = require("../models");
 const userModel = require('../models/User.js');
-const bcrypt = require('bcrypt-nodejs');
+const bcrypt = require('bcryptjs');
 
 /**
  * Create and Save a new User.

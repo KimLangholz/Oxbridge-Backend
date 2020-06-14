@@ -1,6 +1,18 @@
 const db = require("../models");
 const userModel = db.users;
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const { jwt_secret } = require('../config/config');
+
+// Generate a token
+generateToken = user => {
+    return jwt.sign({
+        iss: 'OxbridgeDK',
+        sub: user.id,
+        iat: new Date().getTime(),
+        exp: new Date().setDate(new Date().getDate() + 1)},
+        jwt_secret);
+}
 
 /**
  * Create and Save a new User.
@@ -18,14 +30,18 @@ exports.create = (req, res) => {
         email: req.body.email,
         password: req.body.password,
         firstName: req.body.firstName,
-        lastName: req.body.lastName,
+        lastName: req.body.lastName
     });
 
-    // Save Admin to the Database.
+    // Save user to the Database.
     user
         .save(user)
         .then(data => {
-            res.send(data);
+            const token = generateToken(user);
+            return res.json({
+                data,
+                token: token
+              }); 
         })
         .catch(err => {
             res.status(500).send({
@@ -52,7 +68,12 @@ exports.verify = (req, res) => {
                         throw err;
                     }
                     if (feedback) {
-                        return res.send(data);
+                        // return res.send(data);
+                        const token = generateToken(data);
+                        return res.json({
+                        data,
+                        token: token
+                        }); 
                     } else {
                         return res.send('Password didn\'t match email');
                     }
@@ -65,4 +86,21 @@ exports.verify = (req, res) => {
                 .send({ message: 'Unknown error occured:' + error });
         });
 
+};
+
+/**
+ * Retrieve all users from the database.
+ */
+exports.findAll = (req, res) => {
+
+    userModel.find()
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "An error occurred while retrieving all Teams."
+            });
+        });
 };

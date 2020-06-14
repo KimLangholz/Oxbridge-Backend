@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { jwt_secret } = require('../config/config');
 
+// Generate a token
 generateToken = admin => {
     return jwt.sign({
         iss: 'OxbridgeDK',
@@ -36,7 +37,11 @@ exports.create = (req, res) => {
         .save(admin)
         .then(data => {
             const token = generateToken(admin);
-            res.status(200).json({token});            
+            return res.json({
+                data,
+                token: token
+              });    
+                    
         })
         .catch(err => {
             res.status(500).send({
@@ -55,7 +60,7 @@ exports.verify = (req, res) => {
     const admin = adminModel.findOne({ email: req.params.email })
         .then(data => {
             console.log(data.password);
-            if (!data)
+            if (!admin)
                 res.status(404).send({ message: "This email doesn\'t exist in our Database." });
             else {
                 bcrypt.compare(req.params.password, data.password, function (err, feedback) {
@@ -64,12 +69,12 @@ exports.verify = (req, res) => {
                         throw err;
                     }
                     if (feedback) {
-                        // working -> return res.send(data);
-                        // need to send data too
                         const token = generateToken(admin);
+                        
                         return res.json({
-                            token
-                        });
+                            data,
+                            token: token
+                          });
 
                     } else {
                         return res.send('Password didn\'t match email');
@@ -83,4 +88,21 @@ exports.verify = (req, res) => {
                 .send({ message: 'Unknown error occured:' + error });
         });
 
+};
+
+/**
+ * Retrieve all admins from the database.
+ */
+exports.findAll = (req, res) => {
+
+    adminModel.find()
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "An error occurred while retrieving all Teams."
+            });
+        });
 };

@@ -6,6 +6,8 @@ module.exports = app => {
 
     router.post('/', user.create);
 
+    router.get('/', user.findAll);
+
     router.get('/verify/:email/:password', user.verify);
 
     app.use('/api/user', router);

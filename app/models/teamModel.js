@@ -12,7 +12,7 @@ module.exports = mongoose => {
     var teamSchema = mongoose.Schema(
         {
             teamName: { type: String, required: true, unique: true },
-            boatName: { type: String, required: true, unique: true },
+            boatName: { type: String, required: true, unique: false },
             teamMembers: [memberSchema],
         },
         {

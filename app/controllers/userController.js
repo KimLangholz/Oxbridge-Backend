@@ -30,14 +30,13 @@ exports.create = (req, res) => {
         email: req.body.email,
         password: req.body.password,
         firstName: req.body.firstName,
-        lastName: req.body.lastName,
+        lastName: req.body.lastName
     });
 
     // Save user to the Database.
     user
         .save(user)
         .then(data => {
-            //res.send(data);
             const token = generateToken(user);
             return res.json({
                 data,
@@ -87,4 +86,21 @@ exports.verify = (req, res) => {
                 .send({ message: 'Unknown error occured:' + error });
         });
 
+};
+
+/**
+ * Retrieve all users from the database.
+ */
+exports.findAll = (req, res) => {
+
+    userModel.find()
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "An error occurred while retrieving all Teams."
+            });
+        });
 };

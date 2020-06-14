@@ -37,7 +37,6 @@ exports.create = (req, res) => {
         .save(admin)
         .then(data => {
             const token = generateToken(admin);
-            // res.status(200).json({token});
             return res.json({
                 data,
                 token: token
@@ -89,4 +88,21 @@ exports.verify = (req, res) => {
                 .send({ message: 'Unknown error occured:' + error });
         });
 
+};
+
+/**
+ * Retrieve all admins from the database.
+ */
+exports.findAll = (req, res) => {
+
+    adminModel.find()
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "An error occurred while retrieving all Teams."
+            });
+        });
 };

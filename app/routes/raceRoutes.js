@@ -6,6 +6,8 @@ module.exports = app => {
     router.post('/', race.newRace);
 
     router.get('/search/:searchQuery', race.search);
+    
+    router.get('/', race.findAll);
 
     router.put('/:id', race.update);
 

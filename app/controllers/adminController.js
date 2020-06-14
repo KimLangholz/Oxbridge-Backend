@@ -35,8 +35,9 @@ exports.create = (req, res) => {
     admin
         .save(admin)
         .then(data => {
-            const token = generateToken(admin);
-            res.status(200).json({token});            
+            // const token = generateToken(admin);
+            // res.status(200).json({token});
+            res.send(data);            
         })
         .catch(err => {
             res.status(500).send({
@@ -64,12 +65,12 @@ exports.verify = (req, res) => {
                         throw err;
                     }
                     if (feedback) {
-                        // working -> return res.send(data);
-                        // need to send data too
-                        const token = generateToken(admin);
+                        return res.send(data);
+                        // working token - need to send data too
+                        /* const token = generateToken(admin);
                         return res.json({
                             token
-                        });
+                        });*/
 
                     } else {
                         return res.send('Password didn\'t match email');

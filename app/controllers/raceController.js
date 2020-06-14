@@ -39,6 +39,23 @@ exports.newRace = (req, res) => {
 };
 
 /**
+ * Retrieve all Races from the database.
+ */
+exports.findAll = (req, res) => {
+
+    raceModel.find()
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "An error occurred while retrieving all Races."
+            });
+        });
+};
+
+/**
  * Retrieve a specific race.
  */
 exports.search = (req, res) => {
